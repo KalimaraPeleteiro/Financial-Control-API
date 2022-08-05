@@ -42,14 +42,40 @@ class DespesasViewSet(viewsets.ModelViewSet):
 
 
 class ReceitaEspecificaViewSet(generics.ListAPIView):
+	serializer_class = ReceitasSerializer
+
 	def get_queryset(self):
 		queryset = Receita.objects.filter(id = self.kwargs['pk'])
 		return queryset
-	serializer_class = ReceitasSerializer
 
 
 class DespesaEspecificaViewSet(generics.ListAPIView):
+	serializer_class = DespesasSerializer
+
 	def get_queryset(self):
 		queryset = Despesa.objects.filter(id = self.kwargs['pk'])
 		return queryset
+
+
+class ReceitaMesViewSet(generics.ListAPIView):
+	serializer_class = ReceitasSerializer
+
+	def get_queryset(self):
+		queryset = []
+		for object in Receita.objects.all():
+			if object.data.year == self.kwargs['year'] and object.data.month == self.kwargs['month']:
+				queryset.append(object)
+
+		return queryset
+
+
+class DespesaMesViewSet(generics.ListAPIView):
 	serializer_class = DespesasSerializer
+
+	def get_queryset(self):
+		queryset = []
+		for object in Despesa.objects.all():
+			if object.data.year == self.kwargs['year'] and object.data.month == self.kwargs['month']:
+				queryset.append(object)
+
+		return queryset

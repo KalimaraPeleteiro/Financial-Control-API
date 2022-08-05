@@ -20,12 +20,14 @@ from rest_framework import routers
 
 
 router = routers.DefaultRouter()
-router.register('Receitas', ReceitasViewSet, basename='Receitas')
-router.register('Despesas', DespesasViewSet, basename='Despesas')
+router.register('receitas', ReceitasViewSet, basename='Receitas')
+router.register('despesas', DespesasViewSet, basename='Despesas')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 	path('', include(router.urls)),
     path('receitas/<int:pk>/', ReceitaEspecificaViewSet.as_view()),
-    path('despesas/<int:pk>/', DespesaEspecificaViewSet.as_view())
+    path('despesas/<int:pk>/', DespesaEspecificaViewSet.as_view()),
+    path('receitas/<int:year>/<int:month>/', ReceitaMesViewSet.as_view()),
+    path('despesas/<int:year>/<int:month>/', DespesaMesViewSet.as_view())
 ]
