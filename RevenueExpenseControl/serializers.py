@@ -14,6 +14,7 @@ class ReceitasSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError({'descricao': "Uma receita com essa descrição já foi registrada esse mês."})
         return data
 
+
 class DespesasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Despesa
