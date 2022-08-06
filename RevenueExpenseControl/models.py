@@ -17,7 +17,7 @@ class Despesa(models.Model):
         ('E', 'Educação'),
         ('L', 'Lazer'),
         ('I', 'Imprevistos'),
-        ('O', 'Outras')
+        ('O', 'Outras') 
     )
 
     descricao = models.CharField(max_length=2000)

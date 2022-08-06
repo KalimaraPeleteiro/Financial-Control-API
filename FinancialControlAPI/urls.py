@@ -29,5 +29,6 @@ urlpatterns = [
     path('receitas/<int:pk>/', ReceitaEspecificaViewSet.as_view()),
     path('despesas/<int:pk>/', DespesaEspecificaViewSet.as_view()),
     path('receitas/<int:year>/<int:month>/', ReceitaMesViewSet.as_view()),
-    path('despesas/<int:year>/<int:month>/', DespesaMesViewSet.as_view())
+    path('despesas/<int:year>/<int:month>/', DespesaMesViewSet.as_view()),
+    path('resumo/<int:year>/<int:month>/', ResumoViewSet.as_view())
 ]
