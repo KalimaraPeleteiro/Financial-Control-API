@@ -1,4 +1,3 @@
-from re import S
 from RevenueExpenseControl.models import *
 
 def search_description(model, descricao):

@@ -5,7 +5,7 @@ from RevenueExpenseControl.models import *
 class ReceitasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Receita
-        fields = '__all__'
+        fields = ['descricao', 'valor', 'data']
     
     def validate(self, data):
         query = Receita.objects.filter(descricao = data['descricao'])
@@ -18,7 +18,7 @@ class ReceitasSerializer(serializers.ModelSerializer):
 class DespesasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Despesa
-        fields = '__all__'
+        fields = ['descricao', 'valor', 'data', 'categoria']
     
     def validate(self, data):
         query = Despesa.objects.filter(descricao = data['descricao'])
