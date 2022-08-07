@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'RevenueExpenseControl',
-    'django_filters'
+    'django_filters',
+    'drf_yasg'
 ]
 
 MIDDLEWARE = [

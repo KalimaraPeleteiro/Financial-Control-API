@@ -16,8 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from RevenueExpenseControl.views import *
-from rest_framework import routers
+from rest_framework import routers, permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Financial Control API",
+      default_version='v1',
+      description="An API for Financial Control",
+      terms_of_service="#",
+      contact=openapi.Contact(email="kalimarapeleteiro@gmail.com"),
+      license=openapi.License(name="BSD License"),
+   ),
+   public=True,
+   permission_classes=[permissions.AllowAny],
+)
 
 router = routers.DefaultRouter()
 router.register('receitas', ReceitasViewSet, basename='Receitas')
@@ -30,5 +45,6 @@ urlpatterns = [
     path('despesas/<int:pk>/', DespesaEspecificaViewSet.as_view()),
     path('receitas/<int:year>/<int:month>/', ReceitaMesViewSet.as_view()),
     path('despesas/<int:year>/<int:month>/', DespesaMesViewSet.as_view()),
-    path('resumo/<int:year>/<int:month>/', ResumoViewSet.as_view())
+    path('resumo/<int:year>/<int:month>/', ResumoViewSet.as_view()),
+    path('doc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-swagger-ui')
 ]
